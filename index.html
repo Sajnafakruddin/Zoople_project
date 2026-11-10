@@ -12,7 +12,7 @@
 
 <style>
 
-/* GLOBAL */
+/* RESET */
 
 * {
     margin: 0;
@@ -26,49 +26,79 @@ html {
 }
 
 body {
-    background: #0d0b16;
-    color: #f5f3ff;
+    background: #090909;
+    color: #ffffff;
     line-height: 1.7;
+    overflow-x: hidden;
 }
 
-/* COLORS */
+/* THEME COLORS */
 
 :root {
-    --primary: #a855f7;
-    --secondary: #7c3aed;
-    --dark: #0d0b16;
-    --card: #191426;
-    --light: #d8b4fe;
-    --text: #c4b5d8;
+    --gold: #d4af37;
+    --gold-light: #ffe58a;
+    --gold-dark: #a67c00;
+    --background: #090909;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(212, 175, 55, 0.3);
+    --text: #c7c7c7;
+}
+
+/* BACKGROUND EFFECTS */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: rgba(212, 175, 55, 0.12);
+    filter: blur(120px);
+    top: -100px;
+    left: -100px;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: rgba(166, 124, 0, 0.12);
+    filter: blur(120px);
+    bottom: -100px;
+    right: -100px;
+    z-index: -1;
 }
 
 /* HEADER */
 
 header {
-    min-height: 90vh;
+    min-height: 95vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 60px 20px;
     background:
-        radial-gradient(circle at top, #3b1764 0%, transparent 50%),
-        linear-gradient(135deg, #0d0b16, #1b1030);
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+        radial-gradient(circle at center, #382b08, #090909 65%);
 }
 
-.hero-content {
+.hero {
     max-width: 850px;
+    animation: fadeUp 1.2s ease;
 }
 
-.hero-content .tag {
+.hero-tag {
     display: inline-block;
-    padding: 8px 20px;
-    border: 1px solid var(--primary);
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    background: rgba(212,175,55,0.08);
+    padding: 9px 22px;
     border-radius: 30px;
-    color: var(--light);
+    font-size: 13px;
+    letter-spacing: 2px;
     margin-bottom: 25px;
-    font-size: 14px;
-    background: rgba(168,85,247,0.1);
 }
 
 header h1 {
@@ -78,52 +108,54 @@ header h1 {
 }
 
 header h1 span {
-    background: linear-gradient(90deg, #c084fc, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--gold);
+    text-shadow: 0 0 25px rgba(212,175,55,0.4);
 }
 
 header p {
-    color: var(--text);
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+    color: #d0d0d0;
+    font-size: 17px;
+    margin-bottom: 35px;
 }
+
+/* BUTTON */
 
 .hero-btn {
     display: inline-block;
-    padding: 13px 30px;
-    background: linear-gradient(90deg, #9333ea, #7c3aed);
-    color: white;
     text-decoration: none;
+    color: #111;
+    background: linear-gradient(135deg, #ffe58a, #d4af37, #a67c00);
+    padding: 13px 32px;
     border-radius: 30px;
-    font-weight: 600;
-    transition: 0.3s;
-    box-shadow: 0 5px 25px rgba(168,85,247,0.3);
+    font-weight: 700;
+    transition: 0.4s;
+    box-shadow: 0 0 25px rgba(212,175,55,0.25);
 }
 
 .hero-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(168,85,247,0.5);
+    box-shadow: 0 0 35px rgba(212,175,55,0.55);
 }
 
 /* NAVIGATION */
 
 nav {
-    background: rgba(17, 13, 29, 0.95);
-    backdrop-filter: blur(12px);
-    padding: 18px 20px;
-    display: flex;
-    justify-content: center;
-    gap: 35px;
-    flex-wrap: wrap;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(168,85,247,0.2);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    padding: 18px 15px;
+    background: rgba(15,15,15,0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
 }
 
 nav a {
-    color: #ddd6fe;
+    color: #e5e5e5;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -131,10 +163,10 @@ nav a {
 }
 
 nav a:hover {
-    color: #c084fc;
+    color: var(--gold);
 }
 
-/* SECTIONS */
+/* COMMON SECTION */
 
 section {
     max-width: 1100px;
@@ -148,34 +180,42 @@ section {
 }
 
 .section-title h2 {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     margin-bottom: 10px;
 }
 
 .section-title h2 span {
-    color: var(--primary);
+    color: var(--gold);
 }
 
 .section-title p {
-    color: #a89bbd;
+    color: #999;
     font-size: 14px;
+}
+
+/* GLASS CARD BASE */
+
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    transition: 0.4s;
+}
+
+.glass:hover {
+    border-color: var(--gold);
+    box-shadow: 0 10px 35px rgba(212,175,55,0.15);
+    transform: translateY(-7px);
 }
 
 /* ABOUT */
 
 .about-content {
-    background: var(--card);
-    border: 1px solid rgba(168,85,247,0.2);
-    padding: 35px;
-    border-radius: 18px;
+    padding: 40px;
     text-align: center;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    transition: 0.3s;
-}
-
-.about-content:hover {
-    border-color: var(--primary);
-    transform: translateY(-5px);
 }
 
 .about-content p {
@@ -188,25 +228,16 @@ section {
 .skills {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    gap: 22px;
 }
 
 .skill {
-    background: var(--card);
-    border: 1px solid rgba(168,85,247,0.2);
-    padding: 25px 15px;
-    border-radius: 15px;
+    padding: 27px 15px;
     text-align: center;
     font-weight: 600;
-    color: #e9d5ff;
-    transition: 0.3s;
-}
-
-.skill:hover {
-    transform: translateY(-8px);
-    background: #28183d;
-    border-color: var(--primary);
-    box-shadow: 0 5px 25px rgba(168,85,247,0.2);
+    color: var(--gold-light);
+    font-size: 16px;
+    letter-spacing: 0.5px;
 }
 
 /* PROJECTS */
@@ -218,90 +249,80 @@ section {
 }
 
 .project {
-    background: var(--card);
-    border: 1px solid rgba(168,85,247,0.2);
     padding: 30px;
-    border-radius: 18px;
-    transition: 0.3s;
-}
-
-.project:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(124,58,237,0.2);
 }
 
 .project h3 {
-    color: #d8b4fe;
-    margin-bottom: 15px;
+    color: var(--gold);
     font-size: 19px;
+    margin-bottom: 15px;
 }
 
 .project p {
     color: var(--text);
     font-size: 14px;
+    line-height: 1.8;
 }
 
 .project a {
     display: inline-block;
-    margin-top: 20px;
-    padding: 9px 22px;
-    background: linear-gradient(90deg, #9333ea, #7c3aed);
-    color: white;
-    text-decoration: none;
+    margin-top: 22px;
+    padding: 9px 23px;
+    color: #111;
+    background: linear-gradient(135deg, #ffe58a, #d4af37);
     border-radius: 25px;
+    text-decoration: none;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     transition: 0.3s;
 }
 
 .project a:hover {
+    background: #fff0ae;
     transform: scale(1.05);
 }
 
 /* CONTACT */
 
 .contact-box {
-    background: var(--card);
-    border: 1px solid rgba(168,85,247,0.2);
-    border-radius: 18px;
-    padding: 35px;
+    padding: 40px;
     text-align: center;
 }
 
 .contact-box p {
     color: var(--text);
-    margin: 15px 0;
+    margin: 18px 0;
     overflow-wrap: anywhere;
 }
 
 .contact-box a {
-    color: #c084fc;
+    color: var(--gold-light);
     text-decoration: none;
     transition: 0.3s;
 }
 
 .contact-box a:hover {
     color: white;
+    text-shadow: 0 0 12px var(--gold);
 }
 
 /* FOOTER */
 
 footer {
-    background: #080611;
-    border-top: 1px solid rgba(168,85,247,0.2);
     text-align: center;
     padding: 25px 15px;
-    color: #a89bbd;
+    background: rgba(0,0,0,0.7);
+    border-top: 1px solid var(--border);
+    color: #999;
     font-size: 13px;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(35px);
     }
 
     to {
@@ -310,16 +331,12 @@ footer {
     }
 }
 
-.hero-content {
-    animation: fadeUp 1s ease;
-}
-
-/* MOBILE RESPONSIVE */
+/* RESPONSIVE DESIGN */
 
 @media (max-width: 600px) {
 
     header {
-        min-height: 75vh;
+        min-height: 80vh;
     }
 
     header p {
@@ -327,7 +344,7 @@ footer {
     }
 
     nav {
-        gap: 15px;
+        gap: 16px;
         padding: 15px 10px;
     }
 
@@ -348,6 +365,9 @@ footer {
         padding: 25px 18px;
     }
 
+    .project {
+        padding: 25px;
+    }
 }
 
 </style>
@@ -358,11 +378,15 @@ footer {
 <!-- HEADER -->
 
 <header>
-    <div class="hero-content">
+    <div class="hero">
 
-        <div class="tag">WELCOME TO MY PORTFOLIO</div>
+        <div class="hero-tag">
+            DEVOPS ENGINEER PORTFOLIO
+        </div>
 
-        <h1>Hello, I'm <span>Asiyath Sajna</span></h1>
+        <h1>
+            Hello, I'm <span>Asiyath Sajna</span>
+        </h1>
 
         <p>
             Aspiring DevOps Engineer |
@@ -391,10 +415,10 @@ footer {
 
     <div class="section-title">
         <h2>About <span>Me</span></h2>
-        <p>Get to know more about me</p>
+        <p>A little introduction about myself</p>
     </div>
 
-    <div class="about-content">
+    <div class="glass about-content">
 
         <p>
             Hello! I'm an aspiring DevOps Engineer currently pursuing a
@@ -412,20 +436,20 @@ footer {
 <section id="skills">
 
     <div class="section-title">
-        <h2>My <span>Skills</span></h2>
-        <p>Technologies and tools I am learning</p>
+        <h2>Technical <span>Skills</span></h2>
+        <p>Tools and technologies I am learning</p>
     </div>
 
     <div class="skills">
 
-        <div class="skill">Linux</div>
-        <div class="skill">Git & GitHub</div>
-        <div class="skill">Docker</div>
-        <div class="skill">Kubernetes</div>
-        <div class="skill">Jenkins</div>
-        <div class="skill">AWS</div>
-        <div class="skill">Terraform</div>
-        <div class="skill">Shell Scripting</div>
+        <div class="glass skill">Linux</div>
+        <div class="glass skill">Git & GitHub</div>
+        <div class="glass skill">Docker</div>
+        <div class="glass skill">Kubernetes</div>
+        <div class="glass skill">Jenkins</div>
+        <div class="glass skill">AWS</div>
+        <div class="glass skill">Terraform</div>
+        <div class="glass skill">Shell Scripting</div>
 
     </div>
 
@@ -437,12 +461,12 @@ footer {
 
     <div class="section-title">
         <h2>My <span>Projects</span></h2>
-        <p>Some of my DevOps practical projects</p>
+        <p>Practical DevOps projects and experience</p>
     </div>
 
     <div class="projects">
 
-        <div class="project">
+        <div class="glass project">
 
             <h3>Dockerized Web Application</h3>
 
@@ -455,7 +479,7 @@ footer {
 
         </div>
 
-        <div class="project">
+        <div class="glass project">
 
             <h3>CI/CD Pipeline</h3>
 
@@ -468,7 +492,7 @@ footer {
 
         </div>
 
-        <div class="project">
+        <div class="glass project">
 
             <h3>AWS Deployment</h3>
 
@@ -491,10 +515,10 @@ footer {
 
     <div class="section-title">
         <h2>Contact <span>Me</span></h2>
-        <p>Let's connect and grow together</p>
+        <p>Let's connect and collaborate</p>
     </div>
 
-    <div class="contact-box">
+    <div class="glass contact-box">
 
         <p>
             Email:
@@ -505,14 +529,16 @@ footer {
 
         <p>
             GitHub:
-            <a href="https://github.com/Sajnafakruddin" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Sajnafakruddin"
+               target="_blank" rel="noopener noreferrer">
                 github.com/Sajnafakruddin
             </a>
         </p>
 
         <p>
             LinkedIn:
-            <a href="https://www.linkedin.com/in/asiyath-sajna-76a317192/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/asiyath-sajna-76a317192/"
+               target="_blank" rel="noopener noreferrer">
                 linkedin.com/in/AsiyathSajna
             </a>
         </p>
@@ -524,9 +550,7 @@ footer {
 <!-- FOOTER -->
 
 <footer>
-
     <p>© 2026 Asiyath Sajna | DevOps Portfolio</p>
-
 </footer>
 
 </body>
